@@ -1,46 +1,58 @@
 
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Novedades de Rol de la Semana</title>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-    body{font-family:'Lato',sans-serif;background-color:#f4f7f6;color:#333;margin:0;padding:2rem}.container{max-width:1200px;margin:auto}h1{text-align:center;color:#2c3e50;margin-bottom:2rem;font-weight:700}h4{text-align:center;}.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}.game-card{background-color:#fff;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.05);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;position:relative}.game-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}.game-card img{width:100%;aspect-ratio:16 / 10;object-fit:cover;border-bottom:1px solid #eee}.card-content{padding:1.5rem;display:flex;flex-direction:column;flex-grow:1}.title-wrapper{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem}.card-content h2{margin:0;font-size:1.25rem;color:#2c3e50;flex-grow:1}.card-content h2 a{text-decoration:none;color:inherit}.card-content h2 a:hover{color:#3498db}.price-tag{font-size:.9rem;font-weight:700;padding:.25rem .5rem;border-radius:4px;background-color:#e9ecef;color:#495057;white-space:nowrap;margin-left:.5rem}.price-tag.free{background-color:#28a745;color:#fff}.card-content p{margin:0;font-size:.95rem;line-height:1.6;flex-grow:1;color:#555}.source-badge{position:absolute;top:1rem;right:1rem;padding:.3rem .6rem;border-radius:6px;font-size:.8rem;font-weight:700;color:#fff;z-index:10}
-    .filter-controls {text-align: center;margin-bottom: 2rem;}
-    .filter-btn {background-color: #fff;border: 1px solid #ddd;border-radius: 20px;padding: .5rem 1rem;margin: 0 .25rem;font-family: 'Lato', sans-serif;font-size: .9rem;cursor: pointer;transition: all .2s ease;}
-    .filter-btn:hover {background-color: #e9ecef;border-color: #ccc;}
-    .filter-btn.active {background-color: #2c3e50;color: #fff;border-color: #2c3e50;}
-    .game-card.hidden {display: none;}
-    .source-indies{background-color:#fa5c5c} /* Rojo para Indies */
-    .source-drivethrurpg{background-color:#1e62a3} /* Se mantiene por si acaso, pero se usará Indies */
-    .source-en-tiendas{background-color:#17a2b8} /* Cian para En Tiendas */
-    .source-preventa{background-color:#ffc107;color:#212529} /* Amarillo para Preventa */
-    .source-avance{background-color:#212529;color:#ffffff} /* Negro para Avances */
-    .source-evento{background-color:#8e44ad;color:#ffffff} /* Negro para Avances */
-    .card-footer {margin-top: 1rem;text-align: right;}
-    .added-date {font-size: 0.8rem;color: #888;font-style: italic;}
-    @media (max-width:900px){.game-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:600px){.game-grid{grid-template-columns:1fr}body{padding:1rem}h1{font-size:1.8rem}}
-</style>
-<meta property="og:title" content="Novedades de Rol en Español">
-<meta property="og:description" content="Mantente al día con las últimas novedades de rol en español. Descubre los lanzamientos más recientes, preventas, títulos independientes y próximos juegos en un solo lugar.">
-<meta property="og:image" content="https://pbs.twimg.com/profile_banners/15847515/1678908416/1500x500">
-<meta property="og:url" content="https://malditomaster.github.io/rol/">
-<meta property="og:type" content="website">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" href="favicon.ico">
-<link rel="manifest" href="site.webmanifest">
-</head>
+<!DOCTYPE html><html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Novedades de Rol de la Semana</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+            body{font-family:'Lato',sans-serif;background-color:#f4f7f6;color:#333;margin:0;padding:2rem}.container{max-width:1200px;margin:auto}h1{text-align:center;color:#2c3e50;margin-bottom:2rem;font-weight:700}h4{text-align:center;}.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}.game-card{background-color:#fff;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.05);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;position:relative}.game-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}.game-card img{width:100%;aspect-ratio:16 / 10;object-fit:cover;border-bottom:1px solid #eee}.card-content{padding:1.5rem;display:flex;flex-direction:column;flex-grow:1}.title-wrapper{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem}.card-content h2{margin:0;font-size:1.25rem;color:#2c3e50;flex-grow:1}.card-content h2 a{text-decoration:none;color:inherit}.card-content h2 a:hover{color:#3498db}.price-tag{font-size:.9rem;font-weight:700;padding:.25rem .5rem;border-radius:4px;background-color:#e9ecef;color:#495057;white-space:nowrap;margin-left:.5rem}.price-tag.free{background-color:#28a745;color:#fff}.card-content p{margin:0;font-size:.95rem;line-height:1.6;flex-grow:1;color:#555}.source-badge{position:absolute;top:1rem;right:1rem;padding:.3rem .6rem;border-radius:6px;font-size:.8rem;font-weight:700;color:#fff;z-index:10}
+            .filter-controls {text-align: center;margin-bottom: 2rem;}
+            .filter-btn {background-color: #fff;border: 1px solid #ddd;border-radius: 20px;padding: .5rem 1rem;margin: 0 .25rem;font-family: 'Lato', sans-serif;font-size: .9rem;cursor: pointer;transition: all .2s ease;}
+            .filter-btn:hover {background-color: #e9ecef;border-color: #ccc;}
+            .filter-btn.active {background-color: #2c3e50;color: #fff;border-color: #2c3e50;}
+            .game-card.hidden {display: none;}
+            .source-indies{background-color:#fa5c5c} /* Rojo para Indies */
+            .source-drivethrurpg{background-color:#1e62a3} /* Se mantiene por si acaso, pero se usará Indies */
+            .source-en-tiendas{background-color:#17a2b8} /* Cian para En Tiendas */
+            .source-preventa{background-color:#ffc107;color:#212529} /* Amarillo para Preventa */
+            .source-avance{background-color:#212529;color:#ffffff} /* Negro para Avances */
+            .source-evento{background-color:#8e44ad;color:#ffffff} /* Negro para Avances */
+            .card-footer {margin-top: 1rem;text-align: right;}
+            .added-date {font-size: 0.8rem;color: #888;font-style: italic;}
+            @media (max-width:900px){.game-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:600px){.game-grid{grid-template-columns:1fr}body{padding:1rem}h1{font-size:1.8rem}}
+            /* Estilos para la paginación */
+            #pagination-controls {display: flex;justify-content: center;align-items: center;margin-top: 2.5rem;gap: 0.5rem;}
+            .pagination-btn {border: 1px solid #ddd;background-color: #fff;padding: 0.5rem 1rem;cursor: pointer;border-radius: 6px;font-family: 'Lato', sans-serif;transition: all 0.2s ease;}
+            .pagination-btn:hover {background-color: #e9ecef;border-color: #ccc;}
+            .pagination-btn.active {background-color: #2c3e50;color: #fff;border-color: #2c3e50;font-weight: 700;}
+            .pagination-btn:disabled {cursor: not-allowed;opacity: 0.6;}
+        </style>
+        <meta property="og:title" content="Novedades de Rol en Español">
+        <meta property="og:description" content="Mantente al día con las últimas novedades de rol en español. Descubre los lanzamientos más recientes, preventas, títulos independientes y próximos juegos en un solo lugar.">
+        <meta property="og:image" content="https://pbs.twimg.com/profile_banners/15847515/1678908416/1500x500">
+        <meta property="og:url" content="https://malditomaster.github.io/rol/">
+        <meta property="og:type" content="website">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="icon" href="favicon.ico">
+        <link rel="manifest" href="site.webmanifest">
+    </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZCKL3M3XY"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-NZCKL3M3XY');
 </script>
 <body>
-    <div class="container"><h1>Novedades de Rol de la Semana</h1><h4>Actualizado el 24/08/2025</h4>
+    <div class="container">
+        <h1>Novedades de Rol de la Semana</h1>
+        <h4 id="update-date">Cargando fecha...</h4>
+
+
         <div class="filter-controls">
             <button class="filter-btn active" onclick="filterSource('all')">Todos</button>
             <button class="filter-btn" onclick="filterSource('AVANCE')">Avance</button>
@@ -50,419 +62,176 @@
             <button class="filter-btn" onclick="filterSource('INDIES')">Indies</button>
             <button class="filter-btn" onclick="filterSource('EVENTO')">Evento</button>
         </div>
-        <div class="game-grid">
+        <div class="game-grid"></div>
+        <div id="pagination-controls"></div>
+    </div>
+    <script>
+        // 1. URL actualizada para usar TSV (Tab-Separated Values)
+        const gamesTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTgzzR6lr2G9omEWVZMdVg_wo7qKCrU1yf-itizHQ2M5mGaKDJUg1fmG7QknJ9pAQZMf_pB9AyEYTBn/pub?gid=0&single=true&output=tsv';
+        const dateTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTgzzR6lr2G9omEWVZMdVg_wo7qKCrU1yf-itizHQ2M5mGaKDJUg1fmG7QknJ9pAQZMf_pB9AyEYTBn/pub?gid=2131940647&single=true&output=tsv';
 
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://img.itch.zone/aW1hZ2UvMzgxMDQ3NC8yMjg1ODk0NS5wbmc=/794x1000/1Rde35.png" alt="Imagen de Tropa P">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://chillerito.itch.io/tropap" target="_blank" rel="noopener noreferrer">Tropa P</a></h2>
-                        <span class='price-tag free'>Gratis</span>
-                    </div>
-                    <p>Juego de una página diseñado para los amantes de la aventura, los críptidos locales y el olor a malvavisco tostado"</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 24/08/2025</span>
-                    </div>
-                </div>
-            </div>
+        // Variables para la paginación
+        let allGames = []; // Almacenará la lista maestra de todos los juegos
+        let filteredGames = []; // Almacenará los juegos después de aplicar un filtro
+        let currentPage = 1;
+        const itemsPerPage = 18;
 
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://img.itch.zone/aW1nLzIyODIwODY1LnBuZw==/347x500/veKd19.png" alt="Imagen de Dragons & Riders">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://octosai.itch.io/dragons-riders" target="_blank" rel="noopener noreferrer">Spells & Wizards: Dragons & Riders</a></h2>
-                        <span class='price-tag free'>Gratis</span>
-                    </div>
-                    <p>Suplemento para Spells & Wizards inspirado en "Como entrenar a tu dragón" y "Century: Age of Ashes"</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 24/08/2025</span>
-                    </div>
-                </div>
-            </div>
+        async function loadUpdateDate() {
+            const dateElement = document.getElementById('update-date');
+            try {
+                const response = await fetch(dateTsvUrl);
+                if (!response.ok) throw new Error('No se pudo cargar la fecha.');
+                
+                const dateText = await response.text();
+                // Asumimos que la fecha está en la primera celda
+                dateElement.innerText = `Actualizado el ${dateText.trim()}`;
 
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://img.itch.zone/aW1nLzIyNzk5NjI3LmpwZw==/315x250%23cb/%2BwvZEI.jpg" alt="Imagen de L5A - CIE 23 Humo y Espejos (El León y la Grulla Prólogo I) - Héroes de Rokugán I">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://kalagar.itch.io/l5a-cie-23-humo-y-espejos-el-len-y-la-grulla-prologo-i-roes-de-rokugn-i" target="_blank" rel="noopener noreferrer">L5A - CIE 23 Humo y Espejos (El León y la Grulla Prólogo I) - Héroes de Rokugán I</a></h2>
-                        <span class='price-tag free'>Gratis</span>
-                    </div>
-                    <p>Aventura para L5A 4ª Edición</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 21/08/2025</span>
-                    </div>
-                </div>
-            </div>
+            } catch (error) {
+                console.error("Error al obtener la fecha:", error);
+                dateElement.innerText = 'Fecha no disponible';
+            }
+        }
 
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://tesorosdelamarca.com/wp-content/uploads/2025/08/Christmasland-400x400.jpg" alt="Imagen de Christmasland">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://tesorosdelamarca.com/producto/christmasland/" target="_blank" rel="noopener noreferrer">Ragnarok: Christmasland</a></h2>
-                        <span class='price-tag'>9,50€</span>
+        async function loadGames() {
+            // Primero, cargamos la fecha de actualización
+            await loadUpdateDate();
+
+            try {
+                const response = await fetch(gamesTsvUrl);
+                if (!response.ok) throw new Error(`Error en la red: ${response.statusText}`);
+                
+                const tsvData = await response.text();
+                const rows = tsvData.trim().split('\n').slice(1);
+
+                allGames = rows.map(row => {
+                    const columns = row.split('\t');
+                    const [title, source, imageUrl, link, price, description, date] = columns;
+                    return { title, source, imageUrl, link, price, description, date };
+                });
+
+                // Al inicio, la lista filtrada es igual a la lista completa
+                filteredGames = [...allGames]; 
+                
+                displayPage(1);
+                setupPagination();
+
+            } catch (error) {
+                console.error('Error al cargar los datos:', error);
+                document.querySelector('.game-grid').innerHTML = '<p>No se pudieron cargar los juegos. Inténtalo de nuevo más tarde.</p>';
+            }
+        }
+
+        function displayPage(page) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const gameGrid = document.querySelector('.game-grid');
+            gameGrid.innerHTML = '';
+            currentPage = page;
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            // --- MODIFICADO: Usa la lista 'filteredGames' ---
+            const paginatedItems = filteredGames.slice(startIndex, endIndex);
+
+            const cardsHtml = paginatedItems.map(game => {
+                 if (!game.title) return '';
+                const priceStr = game.price || '';
+                const sourceStr = game.source || 'INDIES';
+                const priceClass = priceStr.toLowerCase().includes('gratis') ? 'price-tag free' : 'price-tag';
+                const sourceClass = sourceStr.trim().toLowerCase().replace(/\s+/g, '-');
+
+                return `
+                    <div class="game-card" data-source="${sourceStr.trim()}">
+                        <span class="source-badge source-${sourceClass}">${sourceStr.trim()}</span>
+                        <img src="${(game.imageUrl || '').trim()}" alt="Imagen de ${game.title.trim()}">
+                        <div class="card-content">
+                            <div class="title-wrapper">
+                                <h2><a href="${(game.link || '#').trim()}" target="_blank" rel="noopener noreferrer">${game.title.trim()}</a></h2>
+                                <span class='${priceClass}'>${priceStr.trim()}</span>
+                            </div>
+                            <p>${(game.description || '').trim()}</p>
+                            <div class="card-footer">
+                                <span class="added-date">${(game.date || '').trim()}</span>
+                            </div>
+                        </div>
                     </div>
-                    <p>Un grupo de amigos, de camino a un idílico fin de semana rodeados de naturaleza salvaje, se verán inmersos en este terrible misterio, que les conducirá a un lugar que solo los niños pueden habitar.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Preventa: 05/09/2025</span>
-                    </div>
-                </div>
-            </div>
+                `;
+            }).join('');
+            
+            gameGrid.innerHTML = cardsHtml;
+            updatePaginationButtons();
+        }
         
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://tesorosdelamarca.com/wp-content/uploads/2025/08/Panico-en-el-Transiberiano-400x400.jpg" alt="Imagen de Pánico en el Transiberiano">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://tesorosdelamarca.com/producto/panico-en-el-transiberiano/" target="_blank" rel="noopener noreferrer">Ragnarok: Pánico en el Transiberiano</a></h2>
-                        <span class='price-tag'>32,30€</span>
-                    </div>
-                    <p>A bordo del legendario Transiberiano, los personajes emprenden una misión desesperada: reunir las piezas dispersas de un huevo de Fabergé que encierra un poder más antiguo que la historia.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Preventa: 05/09/2025</span>
-                    </div>
-                </div>
-            </div>
+        function setupPagination() {
+            const controlsContainer = document.getElementById('pagination-controls');
+            controlsContainer.innerHTML = '';
+            // --- MODIFICADO: Usa la lista 'filteredGames' ---
+            const pageCount = Math.ceil(filteredGames.length / itemsPerPage);
 
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://d1vzi28wh99zvq.cloudfront.net/images/31829/533754.png" alt="Imagen de La Conquista Inversa - Versión Gratuita">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://www.drivethrurpg.com/es/product/533754/la-conquista-inversa-version-gratuita" target="_blank" rel="noopener noreferrer">La Conquista Inversa - Versión Gratuita</a></h2>
-                        <span class='price-tag free'>Gratis</span>
-                    </div>
-                    <p>Este "Legajo de Iniciación" es tu puerta de entrada gratuita al mundo de La Conquista Inversa, un juego de rol de horror cósmico, terror corporal y ficción histórica en la España del Siglo de Oro.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 21/08/2025</span>
-                    </div>
-                </div>
-            </div>
+            if (pageCount <= 1) return; // No mostrar controles si solo hay una página
 
-            <div class="game-card" data-source="AVANCE">
-                <span class="source-badge source-avance">AVANCE</span>
-                <img src="https://www.nosolorol.com/img/psblog/b/lg-b-los%20que%20miran%20al%20abismo%201.png" alt="Imagen de Los que Miran al Abismo">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://www.nosolorol.com/noticias/proximamente-llega-los-que-miran-al-abismo-nuevo-suplemento-para-cultos-innombrables-b3006.html" target="_blank" rel="noopener noreferrer">Los que Miran al Abismo</a></h2>
-                        <span class='price-tag'>¿?</span>
-                    </div>
-                    <p>Es una campaña para Cultos Innombrables de más de 215000 palabras, creada por Mario Fernández y José Lomo</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 21/08/2025</span>
-                    </div>
-                </div>
-            </div>
+            const prevButton = document.createElement('button');
+            prevButton.classList.add('pagination-btn');
+            prevButton.innerText = 'Anterior';
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) displayPage(currentPage - 1);
+            });
+            controlsContainer.appendChild(prevButton);
 
-            <div class="game-card" data-source="EVENTO">
-                <span class="source-badge source-evento">EVENTO</span>
-                <img src="https://freakfestival.es/images/posters/cartel_2025-min.jpg" alt="Imagen de Freak Festival">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://freakfestival.es/" target="_blank" rel="noopener noreferrer">Freak Festival</a></h2>
-                        <span class='price-tag'>Gratis</span>
-                    </div>
-                    <p>Es un evento organizado por la Asociación Cultural Valinor, totalmente gratuito y centrado en el rol y los juegos de mesa. Este año, se celebrará del 17 al 19 de octubre.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 21/08/2025</span>
-                    </div>
-                </div>
-            </div>
+            for (let i = 1; i <= pageCount; i++) {
+                const button = document.createElement('button');
+                button.classList.add('pagination-btn');
+                button.dataset.page = i;
+                button.innerText = i;
+                button.addEventListener('click', () => displayPage(i));
+                controlsContainer.appendChild(button);
+            }
+            
+            const nextButton = document.createElement('button');
+            nextButton.classList.add('pagination-btn');
+            nextButton.innerText = 'Siguiente';
+            nextButton.addEventListener('click', () => {
+                if (currentPage < pageCount) displayPage(currentPage + 1);
+            });
+            controlsContainer.appendChild(nextButton);
+        }
 
-            <div class="game-card" data-source="EN TIENDAS">
-                <span class="source-badge source-en-tiendas">EN TIENDAS</span>
-                <img src="https://m.media-amazon.com/images/I/71vBx-rnDBL._SL1500_.jpg" alt="Imagen de APOCALIPSIS EN THAL KADAR">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://amzn.to/4lG5nRR" target="_blank" rel="noopener noreferrer">APOCALIPSIS EN THAL KADAR</a></h2>
-                        <span class='price-tag'>20.80€</span>
-                    </div>
-                    <p>Es un pequeño homenaje a las historias apocalípticas, donde la desesperación y el dolor invaden a personajes que creen que ha llegado su final. Estos héroes luchan por sobrevivir en un entorno mortal en el que en cualquier momento los peligros pueden acabar con su vida.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 21/08/2025</span>
-                    </div>
-                </div>
-            </div>
+        function updatePaginationButtons() {
+            // --- MODIFICADO: Usa la lista 'filteredGames' ---
+            const pageCount = Math.ceil(filteredGames.length / itemsPerPage);
+            const prevButton = document.querySelector('#pagination-controls button:first-child');
+            const nextButton = document.querySelector('#pagination-controls button:last-child');
+            
+            if (prevButton) prevButton.disabled = currentPage === 1;
+            if (nextButton) nextButton.disabled = currentPage === pageCount;
 
-            <div class="game-card" data-source="EN TIENDAS">
-                <span class="source-badge source-en-tiendas">EN TIENDAS</span>
-                <img src="https://m.media-amazon.com/images/I/61yuaiBVX5L._SL1500_.jpg" alt="Imagen de EN LA CIUDADELA DEL OLVIDO: EL JUEGO DE ROL DEMONIACO Y PROFANO">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://amzn.to/3UCqoSv" target="_blank" rel="noopener noreferrer">EN LA CIUDADELA DEL OLVIDO: EL JUEGO DE ROL DEMONIACO Y PROFANO</a></h2>
-                        <span class='price-tag'>14.56€</span>
-                    </div>
-                    <p>Tras eones de guerras y barbarie, el mundo ha sucumbido a la oscuridad. Son pocos los que están enfrente del mal. El dios de la luz otorgó poderes maravillosos a algunos héroes, esperando que estos liberaran a la humanidad de los demonios.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 21/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="AVANCE">
-                <span class="source-badge source-avance">AVANCE</span>
-                <img src="https://tesorosdelamarca.com/wp-content/uploads/2026/08/registro-de-expedicion.jpg" alt="Imagen de Registro de Expedición">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://x.com/TheHillsPress/status/1957771742388121669" target="_blank" rel="noopener noreferrer">Registro de Expedición</a></h2>
-                        <span class='price-tag'>39.95€</span>
-                    </div>
-                    <p>Registro de expedición 📖 en un diario de viaje ficticio basado en la obra de Paths Peculiar 🪶, cartógrafo y diseñador de mundos. Relata las aventuras y desventuras de un misterioso viajero en busca de una legendaria biblioteca perdida. El libro está diseñado para cumplir la función de ayuda de juego.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="AVANCE">
-                <span class="source-badge source-avance">AVANCE</span>
-                <img src="https://pbs.twimg.com/media/GyPofclWIAcYYKB?format=jpg&name=large" alt="Imagen de Antología Ratas en las Paredes">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://x.com/TheHillsPress/status/1955662296828838116" target="_blank" rel="noopener noreferrer">Antología Ratas en las Paredes</a></h2>
-                        <span class='price-tag'>¿?</span>
-                    </div>
-                    <p>Aventuras de una sola sesión que comparten temática (saldrán en formato mecenazgo).</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="AVANCE">
-                <span class="source-badge source-avance">AVANCE</span>
-                <img src="https://d1wgd08o7gfznj.cloudfront.net/uploads/email_campaign/hero_image/58576/optimized_BANNER_PRINCIPAL.png" alt="Imagen de SIN + DAGGER IN THE HEART">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://www.backerkit.com/call_to_action/ebce7568-45c3-4c1d-9b19-40ab9ea749a4/landing" target="_blank" rel="noopener noreferrer">SIN + DAGGER IN THE HEART</a></h2>
-                        <span class='price-tag'>¿?</span>
-                    </div>
-                    <p>Dos nuevos títulos para Destera, el mundo de Spire y Heart.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="EN TIENDAS">
-                <span class="source-badge source-en-tiendas">EN TIENDAS</span>
-                <img src="https://pbs.twimg.com/media/Gy2yjtnW4AAIrII?format=jpg&name=large" alt="Imagen de Legendary Kingdoms 2: Corona y torre">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://devir.es/legendary-kingdoms-2-corona-y-torre" target="_blank" rel="noopener noreferrer">Legendary Kingdoms 2: Corona y torre</a></h2>
-                        <span class='price-tag'>38,00€</span>
-                    </div>
-                    <p>Legendary Kingdoms es una serie de libro-juegos de campaña, en los que diriges un grupo de aventureros en un mundo que se adapta a tus acciones.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="EN TIENDAS">
-                <span class="source-badge source-en-tiendas">EN TIENDAS</span>
-                <img src="https://m.media-amazon.com/images/I/51pEzisNtsL._AC_.jpg" alt="Imagen de Tarjetas de índice hexagonales">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://amzn.to/41ixoYh" target="_blank" rel="noopener noreferrer">Tarjetas de índice hexagonales</a></h2>
-                        <span class='price-tag'>23,27€</span>
-                    </div>
-                    <p>Te pongo esto por aquí, que seguro que le encuentras un buen uso 😉</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>            
-
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://tesorosdelamarca.com/wp-content/uploads/2025/06/traicion-en-el-sueno-400x400.jpg" alt="Imagen de Traición en el sueño">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://tesorosdelamarca.com/producto/traicion-en-el-sueno/" target="_blank" rel="noopener noreferrer">Traición en el sueño</a></h2>
-                        <span class='price-tag'>18,95€</span>
-                    </div>
-                    <p>Desde el Ártico hasta la Amazonia, pasando por la Italia alto medieval, ningún lugar ni época está libre de la influencia de los mitos, y nuestros héroes serán los que deban soñar con la solución ¿o deberán permanecer despiertos?</p>
-                    <div class="card-footer">
-                        <span class="added-date">Preventa: 29/08/2025</span>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://tesorosdelamarca.com/wp-content/uploads/2025/06/La-Sierpe-Negra-Brandonsford-400x400.jpg" alt="Imagen de La Sierpe Negra de Brandonsford">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://tesorosdelamarca.com/producto/la-sierpe-negra-de-brandonsford/" target="_blank" rel="noopener noreferrer">La Sierpe Negra de Brandonsford</a></h2>
-                        <span class='price-tag'>11,40€</span>
-                    </div>
-                    <p>La Sierpe Negra de Brandonsford es un módulo OSR para PJs de nivel 1 a 3, en el que visitarán a los pintorescos habitantes de Brandonsford, se aventurarán por los bosques embrujados por las hadas a las fueras de la ciudad, se adentrarán en dos mazmorras y, con suerte, matarán a un dragón.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Preventa: 29/08/2025</span>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://tesorosdelamarca.com/wp-content/uploads/2025/07/la-isla-de-los-dioses-olvidados-400x400.jpg" alt="Imagen de La isla de los dioses olvidados">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://tesorosdelamarca.com/producto/la-isla-de-los-dioses-olvidados/" target="_blank" rel="noopener noreferrer">La isla de los dioses olvidados</a></h2>
-                        <span class='price-tag'>9,50€</span>
-                    </div>
-                    <p>Los jugadores recorrerán un paisaje selvático lleno de monstruos y personajes inspirados en la mitología mesoamericana.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Preventa: 29/08/2025</span>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://tesorosdelamarca.com/wp-content/uploads/2025/04/EL-ALTER-IMPIO-400x400.jpg" alt="Imagen de El Altar Impío">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://tesorosdelamarca.com/producto/el-altar-impio/" target="_blank" rel="noopener noreferrer">El Altar Impío</a></h2>
-                        <span class='price-tag'>14,25€</span>
-                    </div>
-                    <p>Un heredero desaparecido y una truculenta historia sobre luchas de poder y nigromancia llevarán a los aventureros a un viaje repleto de desafíos, desde Lûn hasta la prisión de la Ciudadela en las Islas del Perdón, dejando atrás el desierto de las Lágrimas.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Preventa: 29/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://images.squarespace-cdn.com/content/v1/5d1dac1a1a7a2400017eeff0/1754544004082-T0LPI4XX7544JVZQXA40/A-la-fuga_Portada_DistribuidorasRR.png?format=1500w" alt="Imagen de ¡A LA FUGA!">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://www.elrefugioeditorial.com/a-la-fuga" target="_blank" rel="noopener noreferrer">¡A la Fuga!</a></h2>
-                        <span class='price-tag'>24,90€</span>
-                    </div>
-                    <p>Un juego de rol en vivo de Jason Morningstar (Fiasco, The Skeletons) para 4 jugadores (o 5 si jugáis con un guía) sobre criminales desesperados en un viaje en coche a ninguna parte.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="PREVENTA">
-                <span class="source-badge source-preventa">PREVENTA</span>
-                <img src="https://images.squarespace-cdn.com/content/v1/5d1dac1a1a7a2400017eeff0/1754625885548-GU37F52VA0QN92BLOJAT/Todo_Las-fauces_RR1.png?format=1500w" alt="Imagen de ¡A LA FUGA!">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://www.elrefugioeditorial.com/las-fauces-del-dragon" target="_blank" rel="noopener noreferrer">La Fauces del Dragón</a></h2>
-                        <span class='price-tag'>24,90€</span>
-                    </div>
-                    <p>Un juego de mazmorreo clásico que cabe en una pequeña caja de lata. Veteranos y novatos, entrad en Las fauces del dragón y luchad por salir de ellas con vida ¡y con oro!</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://img.itch.zone/aW1nLzIyODA1NDQ3LnBuZw==/315x250%23cb/VfW2Cg.png" alt="Imagen de Der Golem">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://orgullofreak.itch.io/der-golem" target="_blank" rel="noopener noreferrer">Der Golem</a></h2>
-                        <span class='price-tag free'>Gratis</span>
-                    </div>
-                    <p>Esquema de aventura para Cairn donde está en juego el destino de toda una comunidad</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://img.itch.zone/aW1nLzIyNjA3MDM5LnBuZw==/315x250%23cb/%2FEEi1Z.png" alt="Imagen de Xeno">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://caligaes.itch.io/xenoinvasion" target="_blank" rel="noopener noreferrer">Xeno Invasion</a></h2>
-                        <span class='price-tag free'>$10 (copias gratis)</span>
-                    </div>
-                    <p>Caligaes’ XENO Invasión es la segunda edición del juego de rol de horror a la inversa en donde los jugadores tomarán el papel de XENOS: Terroríficos alienígenas enviados a la tierra para expiar sus pecados.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://d1vzi28wh99zvq.cloudfront.net/images/28999/532746.png" alt="Imagen de Ars Magica: La baronesa desaparecida">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://www.drivethrurpg.com/es/product/532746/ars-magica-la-baronesa-desaparecida" target="_blank" rel="noopener noreferrer">Ars Magica: La baronesa desaparecida</a></h2>
-                        <span class='price-tag'>Paga lo que quieras</span>
-                    </div>
-                    <p>La baronesa desaparecida es una aventura introductoria para la quinta edición de Ars Magica que pretende presentar el reino feérico a los jugadores nuevos. Se centra en la exploración de un bosque y sus habitantes, y además de varios encuentros con hadas caprichosas, presenta algunos dilemas delicados que podrían tener ramificaciones en el futuro de la alianza. La aventura puede jugarse en una sola sesión larga de 4 horas.</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://img.itch.zone/aW1nLzIyNzUzNTMwLmpwZw==/315x250%23cb/%2FzOQes.jpg" alt="Imagen de The cicada's growing wish / El creciente deseo de la cigarra (EN + ES)">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://sleepy-badger-games.itch.io/the-cicadas-growing-wish" target="_blank" rel="noopener noreferrer">El creciente deseo de la cigarra (EN + ES)</a></h2>
-                        <span class='price-tag free'>Gratis</span>
-                    </div>
-                    <p>The cicada’s growing wish” invites you to imagine that you are a cicada, growing for 17 years under the ground until you are ready to emerge and live above ground for a week. What would you do?</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="game-card" data-source="INDIES">
-                <span class="source-badge source-indies">INDIES</span>
-                <img src="https://img.itch.zone/aW1nLzIyNzQyMDE5LmpwZw==/315x250%23cb/sR0WQ8.jpg" alt="Imagen de La Cabaña">
-                <div class="card-content">
-                    <div class="title-wrapper">
-                        <h2><a href="https://carmillak.itch.io/la-cabana" target="_blank" rel="noopener noreferrer">La Cabaña</a></h2>
-                        <span class='price-tag'>$2.00</span>
-                    </div>
-                    <p>La Cabaña es un juego de horror sobrenatural de una sola página, para 2 a 5 personajes jugadores (PJs) y un director de juego (DJ).</p>
-                    <div class="card-footer">
-                        <span class="added-date">Añadido: 20/08/2025</span>
-                    </div>
-                </div>
-            </div>
-        </div></div>
-        <script>
-        function filterSource(source) {
-            // Obtenemos todas las tarjetas de juego y todos los botones
-            const cards = document.querySelectorAll('.game-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-
-            // Quitamos la clase 'active' de todos los botones
-            buttons.forEach(button => button.classList.remove('active'));
-            // Añadimos la clase 'active' solo al botón que hemos pulsado
-            event.target.classList.add('active');
-
-            // Recorremos cada tarjeta para decidir si la mostramos o la ocultamos
-            cards.forEach(card => {
-                // Si el filtro es 'all' O la fuente de la tarjeta coincide con el filtro, la mostramos.
-                if (source === 'all' || card.dataset.source === source) {
-                    card.style.display = 'flex'; // O 'block', 'flex' mantiene el diseño
-                } else {
-                    // Si no, la ocultamos.
-                    card.style.display = 'none';
+            document.querySelectorAll('.pagination-btn[data-page]').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.page) === currentPage) {
+                    btn.classList.add('active');
                 }
             });
         }
-        </script>
-    </body></html>
+
+        // --- FUNCIÓN DE FILTRADO REINTEGRADA ---
+        function filterSource(source) {
+            // Actualiza el estado visual de los botones de filtro
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            // Filtra la lista de juegos
+            if (source === 'all') {
+                filteredGames = [...allGames];
+            } else {
+                filteredGames = allGames.filter(game => game.source === source);
+            }
+            
+            setupPagination();
+            displayPage(1);
+        }
+
+        
+        
+        document.addEventListener('DOMContentLoaded', loadGames);
+    </script>
+</body></html>
