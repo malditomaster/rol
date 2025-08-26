@@ -107,9 +107,10 @@
     </div>
     <script>
         // 1. URL actualizada para usar TSV (Tab-Separated Values)
-        const gamesTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTgzzR6lr2G9omEWVZMdVg_wo7qKCrU1yf-itizHQ2M5mGaKDJUg1fmG7QknJ9pAQZMf_pB9AyEYTBn/pub?gid=0&single=true&output=tsv';
+        const gamesTsvUrl = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=0';
         
-        const dateTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTgzzR6lr2G9omEWVZMdVg_wo7qKCrU1yf-itizHQ2M5mGaKDJUg1fmG7QknJ9pAQZMf_pB9AyEYTBn/pub?gid=2131940647&single=true&output=tsv';
+        const dateTsvUrl = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=2131940647';       
+        
 
         // Variables para la paginación
         let allGames = []; // Almacenará la lista maestra de todos los juegos
@@ -146,7 +147,7 @@
 
                 allGames = rows.map(row => {
                     const columns = row.split('\t');
-                    const [title, source, imageUrl, link, price, description, date] = columns;
+                    const [ title, source, imageUrl, link, price, description, date] = columns;
                     return { title, source, imageUrl, link, price, description, date };
                 });
 
