@@ -26,6 +26,7 @@
                 text-align:center;color:white;
                 font-size:1.2rem;font-weight:400;font-family: "Roboto", sans-serif;
             }
+            .error-message{color: white; text-align: center;}
             .game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
             .game-card{background-color:#fff;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.05);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;position:relative}.game-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}.game-card img{width:100%;aspect-ratio:16 / 10;object-fit:cover;border-bottom:1px solid #eee}.card-content{padding:1.5rem;display:flex;flex-direction:column;flex-grow:1}.title-wrapper{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem}.card-content h2{margin:0;font-size:1.25rem;color:#2c3e50;flex-grow:1}.card-content h2 a{text-decoration:none;color:inherit}.card-content h2 a:hover{color:#e59b25;text-decoration: underline;}.price-tag{font-size:.9rem;font-weight:700;padding:.25rem .5rem;border-radius:4px;background-color:#e9ecef;color:#495057;white-space:nowrap;margin-left:.5rem}.price-tag.free{background-color:#28a745;color:#fff}.card-content p{margin:0;font-size:.95rem;line-height:1.6;flex-grow:1;color:#555}.source-badge{position:absolute;top:1rem;right:1rem;padding:.3rem .6rem;border-radius:6px;font-size:.8rem;font-weight:700;color:#fff;z-index:10}
             .filter-controls {text-align: center;margin-bottom: 2rem;}
@@ -33,12 +34,12 @@
             .filter-btn:hover {background-color: #e9ecef;border-color: #ccc;}
             .filter-btn.active {background-color: #000000;color: #fff;border-color: #2c3e50;}
             .game-card.hidden {display: none;}
-            .source-indies{background-color:#fa5c5c} /* Rojo para Indies */
+            .source-indie{background-color:#fa5c5c} /* Rojo para Indies */
             .source-drivethrurpg{background-color:#1e62a3} /* Se mantiene por si acaso, pero se usará Indies */
             .source-en-tiendas{background-color:#17a2b8} /* Cian para En Tiendas */
             .source-preventa{background-color:#ffc107;color:#212529} /* Amarillo para Preventa */
             .source-avance{background-color:#212529;color:#ffffff} /* Negro para Avances */
-            .source-evento{background-color:#8e44ad;color:#ffffff} /* Negro para Avances */
+            .source-otros{background-color:#8e44ad;color:#ffffff} /* Negro para Avances */
             .card-footer {margin-top: 1rem;text-align: right;}
             .added-date {font-size: 0.8rem;color: #888;font-style: italic;}
             @media (max-width:900px){.game-grid{grid-template-columns:repeat(2,1fr)}}
@@ -96,17 +97,17 @@
         <div class="filter-controls">
             <button class="filter-btn active" onclick="filterSource('all')">Todos</button>
             <button class="filter-btn" onclick="filterSource('AVANCE')">Avance</button>
-            <button class="filter-btn" onclick="filterSource('MECENAZGOS')">Mecenazgos</button>
+            <button class="filter-btn" onclick="filterSource('MECENAZGOS')">Mecenazgo</button>
             <button class="filter-btn" onclick="filterSource('EN TIENDAS')">En Tiendas</button>
             <button class="filter-btn" onclick="filterSource('PREVENTA')">Preventa</button>
-            <button class="filter-btn" onclick="filterSource('INDIES')">Indies</button>
-            <button class="filter-btn" onclick="filterSource('EVENTO')">Evento</button>
+            <button class="filter-btn" onclick="filterSource('INDIE')">Indies</button>
+            <button class="filter-btn" onclick="filterSource('OTROS')">Otros</button>
         </div>
+        <div class="error-message"></div>
         <div class="game-grid"></div>
         <div id="pagination-controls"></div>
     </div>
     <script>
-        // 1. URL actualizada para usar TSV (Tab-Separated Values)
         const gamesTsvUrl = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=0';
         
         const dateTsvUrl = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=2131940647';       
@@ -135,7 +136,6 @@
         }
 
         async function loadGames() {
-            // Primero, cargamos la fecha de actualización
             await loadUpdateDate();
 
             try {
@@ -151,7 +151,6 @@
                     return { title, source, imageUrl, link, price, description, date };
                 });
 
-                // Al inicio, la lista filtrada es igual a la lista completa
                 filteredGames = [...allGames]; 
                 
                 displayPage(1);
@@ -159,7 +158,7 @@
 
             } catch (error) {
                 console.error('Error al cargar los datos:', error);
-                document.querySelector('.game-grid').innerHTML = '<p>No se pudieron cargar los juegos. Inténtalo de nuevo más tarde.</p>';
+                document.querySelector('.error-message').innerHTML = '<p>No se pudieron cargar los juegos. Inténtalo de nuevo más tarde.</p>';
             }
         }
 
@@ -172,13 +171,13 @@
 
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            // --- MODIFICADO: Usa la lista 'filteredGames' ---
+
             const paginatedItems = filteredGames.slice(startIndex, endIndex);
 
             const cardsHtml = paginatedItems.map(game => {
                  if (!game.title) return '';
                 const priceStr = game.price || '';
-                const sourceStr = game.source || 'INDIES';
+                const sourceStr = game.source || 'INDIE';
                 const priceClass = priceStr.toLowerCase().includes('gratis') ? 'price-tag free' : 'price-tag';
                 const sourceClass = sourceStr.trim().toLowerCase().replace(/\s+/g, '-');
 
@@ -207,7 +206,7 @@
         function setupPagination() {
             const controlsContainer = document.getElementById('pagination-controls');
             controlsContainer.innerHTML = '';
-            // --- MODIFICADO: Usa la lista 'filteredGames' ---
+
             const pageCount = Math.ceil(filteredGames.length / itemsPerPage);
 
             if (pageCount <= 1) return; // No mostrar controles si solo hay una página
@@ -239,7 +238,7 @@
         }
 
         function updatePaginationButtons() {
-            // --- MODIFICADO: Usa la lista 'filteredGames' ---
+
             const pageCount = Math.ceil(filteredGames.length / itemsPerPage);
             const prevButton = document.querySelector('#pagination-controls button:first-child');
             const nextButton = document.querySelector('#pagination-controls button:last-child');
@@ -255,7 +254,6 @@
             });
         }
 
-        // --- FUNCIÓN DE FILTRADO REINTEGRADA ---
         function filterSource(source) {
             // Actualiza el estado visual de los botones de filtro
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
