@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compendio de Novedades Roleras</title>
+
+    <!-- Metadatos para SEO y redes sociales -->
+    <meta name="description" content="Mantente al día con las últimas novedades de rol en español. Descubre los lanzamientos más recientes, preventas, mecenazgos, , avances, etc.">
+    <meta property="og:title" content="Compendio de Novedades Roleras">
+    <meta property="og:description" content="Mantente al día con las últimas novedades de rol en español.">
+    <meta property="og:image" content="https://pbs.twimg.com/profile_banners/15847515/1678908416/1500x500">
+    <meta property="og:url" content="https://malditomaster.github.io/rol/">
+    <meta property="og:type" content="website">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700;900&display-swap" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(to bottom, #2c3e50, #0a2e47);
+            background-attachment: fixed;
+        }
+        h1, h4 { font-family: 'Roboto', sans-serif; }
+        header { font-family: sans-serif; }
+
+        /* Clases personalizadas para las insignias de origen */
+        .source { color: white; } 
+        .source-indie { background-color: #fa5c5c; }
+        .source-mecenazgo { background-color: #1e62a3; }
+        .source-en-tiendas { background-color: #17a2b8; }
+        .source-preventa { background-color: #ffc107; color: #212529; }
+        .source-avance { background-color: #212529; }
+        .source-otros { background-color: #8e44ad; }
+        .price-tag.free { background-color: #28a745; color: white; }
+
+        /* Estilos para los botones de filtro */
+        .filter-btn { background-color: white; color: black; border: 1px solid #ddd; border-radius: 9999px; padding: 0.5rem 1rem; font-size: 0.9rem; font-family: 'Lato', sans-serif; cursor: pointer; transition: all 0.2s ease; }
+        .filter-btn:hover { background-color: #e9ecef; border-color: #ccc; }
+        .filter-btn.active { background-color: #ffc107; color: black; border-color: #ffc107; }
+
+        /* Estilos para los botones de paginación */
+        .pagination-btn { background-color: white; color: black; border: 1px solid #ddd; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; font-family: 'Roboto', sans-serif; transition: all 0.2s ease; }
+        .pagination-btn:hover { background-color: #e9ecef; border-color: #ccc; }
+        .pagination-btn:disabled { cursor: not-allowed; opacity: 0.6; }
+        .pagination-btn.active { background-color: #ffc107; color: black; border-color: #ffc107; font-weight: 700; }
+    </style>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZCKL3M3XY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NZCKL3M3XY');
+    </script>
+</head>
+<body class="text-gray-300">
+
+    <!-- Barra Superior -->
+    <header class="bg-yellow-500 text-black py-3 px-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto grid grid-cols-3 items-center">
+            <!-- Izquierda: M2 -->
+            <div class="justify-self-start">
+                 <span class="font-bold md:text-2xl text-4xl">M2</span>
+            </div>
+    
+            <!-- Centro (Desktop) / Derecha (Móvil) -->
+            <div class="md:justify-self-center col-span-2 md:col-span-1">
+                <!-- Título (Desktop) -->
+                <p class="hidden md:block font-semibold text-lg whitespace-nowrap text-center">Novedades de rol para 3-6 Jugadores de Nivel 10</p>
+                <!-- Título (Móvil) -->
+                <p class="md:hidden text-right text-lg leading-[1.2] font-semibold">Novedades de rol para 3-6 Jugadores de Nivel 10</p>
+            </div>
+            
+            <!-- Derecha (Solo Desktop): Fecha -->
+            <div class="hidden md:block justify-self-end">
+                <span id="update-date" class="text-sm font-semibold"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <!-- Título principal -->
+        <section class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl md:leading-[.85] font-extrabold text-white leading-[.85] mb-2">
+                Compendio de<br/>Novedades Roleras
+            </h1>
+            <h4 class="text-lg md:text-xl text-yellow-400">de malditomaster</h4>
+        </section>
+
+        <!-- Controles de Filtro -->
+        <section id="filter-controls" class="flex flex-wrap justify-center gap-2 mb-10">
+            <button class="filter-btn active" data-source="all">Todos</button>
+            <button class="filter-btn" data-source="AVANCE">Avance</button>
+            <button class="filter-btn" data-source="MECENAZGO">Mecenazgos</button>
+            <button class="filter-btn" data-source="EN TIENDAS">En Tiendas</button>
+            <button class="filter-btn" data-source="PREVENTA">Preventa</button>
+            <button class="filter-btn" data-source="INDIE">Indies</button>
+            <button class="filter-btn" data-source="OTROS">Otros</button>
+        </section>
+
+        <!-- Mensaje de error o carga -->
+        <div id="message-area" class="text-center text-white my-8"></div>
+
+        <!-- Rejilla de Juegos -->
+        <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Las tarjetas de juego se insertarán aquí dinámicamente -->
+        </div>
+
+        <!-- Controles de Paginación -->
+        <nav id="pagination-controls" class="flex justify-center items-center mt-12 space-x-2">
+            <!-- Los botones de paginación se insertarán aquí -->
+        </nav>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // URLs de los datos
+            const GAMES_TSV_URL = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=0';
+            const DATE_TSV_URL = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=2131940647';
+            
+            // Estado de la aplicación
+            const state = {
+                allGames: [],
+                filteredGames: [],
+                currentPage: 1,
+                itemsPerPage: 18,
+                currentFilter: 'all',
+            };
+
+            // Elementos del DOM
+            const gameGrid = document.getElementById('game-grid');
+            const paginationControls = document.getElementById('pagination-controls');
+            const filterControls = document.getElementById('filter-controls');
+            const updateDateElement = document.getElementById('update-date');
+            const messageArea = document.getElementById('message-area');
+
+            /**
+             * Muestra un mensaje en el área designada.
+             * @param {string} message - El mensaje a mostrar.
+             * @param {('info'|'error')} type - El tipo de mensaje.
+             */
+            const showMessage = (message, type = 'info') => {
+                messageArea.innerHTML = `<p class="${type === 'error' ? 'text-red-500' : 'text-gray-400'}">${message}</p>`;
+            };
+
+            /**
+             * Carga la fecha de la última actualización y la muestra.
+             */
+            const loadUpdateDate = async () => {
+                try {
+                    const response = await fetch(DATE_TSV_URL);
+                    if (!response.ok) throw new Error('No se pudo cargar la fecha.');
+                    const dateText = await response.text();
+                    updateDateElement.textContent = dateText.trim();
+                } catch (error) {
+                    console.error("Error al obtener la fecha:", error);
+                    updateDateElement.textContent = 'Fecha no disponible';
+                }
+            };
+
+            /**
+             * Carga los datos de los juegos desde la hoja de cálculo.
+             */
+            const loadGames = async () => {
+                showMessage('Cargando novedades...');
+                try {
+                    const response = await fetch(GAMES_TSV_URL);
+                    if (!response.ok) throw new Error(`Error en la red: ${response.statusText}`);
+                    
+                    const tsvData = await response.text();
+                    const rows = tsvData.trim().split('\n').slice(1);
+
+                    state.allGames = rows.map(row => {
+                        const [title, source, imageUrl, link, price, description, date] = row.split('\t');
+                        return { title, source, imageUrl, link, price, description, date };
+                    }).filter(game => game.title); // Filtrar filas vacías
+
+                    applyFilter();
+
+                } catch (error) {
+                    console.error('Error al cargar los datos:', error);
+                    showMessage('No se pudieron cargar los juegos. Inténtalo de nuevo más tarde.', 'error');
+                }
+            };
+
+            /**
+             * Crea el HTML para una tarjeta de juego.
+             * @param {object} game - El objeto del juego.
+             * @returns {string} El HTML de la tarjeta.
+             */
+            const createGameCardHTML = (game) => {
+                const { title = '', source = 'INDIE', imageUrl = '', link = '#', price = '', description = '', date = '' } = game;
+                const priceStr = price.trim();
+                const sourceStr = source.trim();
+                const priceClass = priceStr.toLowerCase().includes('gratis') ? 'price-tag free' : 'price-tag';
+                const sourceClass = `source-${sourceStr.toLowerCase().replace(/\s+/g, '-')}`;
+
+                return `
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transform hover:-translate-y-1 transition-transform duration-300" data-source="${sourceStr}">
+                        <div class="relative">
+                            <span class="absolute top-4 right-4 text-sm font-bold py-1 px-2 rounded-md source ${sourceClass}">${sourceStr}</span>
+                            <img src="${imageUrl.trim()}" alt="Imagen de ${title.trim()}" class="w-full h-48 object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h2 class="text-xl font-bold text-gray-900 flex-grow pr-2">
+                                    <a href="${link.trim()}" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-600 transition-colors duration-200">${title.trim()}</a>
+                                </h2>
+                                ${priceStr ? `<span class='text-sm font-semibold py-1 px-2 rounded bg-gray-200 text-gray-800 whitespace-nowrap ${priceClass}'>${priceStr}</span>` : ''}
+                            </div>
+                            <p class="text-gray-600 text-base leading-relaxed flex-grow">${description.trim()}</p>
+                            <div class="mt-4 text-right">
+                                <span class="text-xs text-gray-500 italic">${date.trim()}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            };
+
+            /**
+             * Muestra los juegos de la página actual.
+             */
+            const displayPage = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                gameGrid.innerHTML = '';
+                
+                if (state.filteredGames.length === 0) {
+                    showMessage('No hay juegos que coincidan con el filtro seleccionado.', 'info');
+                    return;
+                }
+                
+                messageArea.innerHTML = ''; // Limpiar mensajes si hay juegos
+                
+                const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+                const endIndex = startIndex + state.itemsPerPage;
+                const paginatedItems = state.filteredGames.slice(startIndex, endIndex);
+
+                const cardsHtml = paginatedItems.map(createGameCardHTML).join('');
+                gameGrid.innerHTML = cardsHtml;
+
+                setupPagination();
+            };
+
+            /**
+             * Configura y muestra los controles de paginación.
+             */
+            const setupPagination = () => {
+                paginationControls.innerHTML = '';
+                const pageCount = Math.ceil(state.filteredGames.length / state.itemsPerPage);
+
+                if (pageCount <= 1) return;
+
+                // Botón Anterior
+                paginationControls.insertAdjacentHTML('beforeend', `
+                    <button id="prev-page" class="pagination-btn" ${state.currentPage === 1 ? 'disabled' : ''}>Anterior</button>
+                `);
+
+                // Botones de página
+                for (let i = 1; i <= pageCount; i++) {
+                    paginationControls.insertAdjacentHTML('beforeend', `
+                        <button class="pagination-btn ${i === state.currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
+                    `);
+                }
+                
+                // Botón Siguiente
+                paginationControls.insertAdjacentHTML('beforeend', `
+                    <button id="next-page" class="pagination-btn" ${state.currentPage === pageCount ? 'disabled' : ''}>Siguiente</button>
+                `);
+            };
+            
+            /**
+             * Aplica el filtro actual a la lista de juegos y actualiza la vista.
+             */
+            const applyFilter = () => {
+                if (state.currentFilter === 'all') {
+                    state.filteredGames = [...state.allGames];
+                } else {
+                    state.filteredGames = state.allGames.filter(game => game.source === state.currentFilter);
+                }
+                state.currentPage = 1;
+                displayPage();
+            };
+
+            // --- MANEJADORES DE EVENTOS ---
+
+            filterControls.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    filterControls.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    
+                    state.currentFilter = e.target.dataset.source;
+                    applyFilter();
+                }
+            });
+
+            paginationControls.addEventListener('click', (e) => {
+                const target = e.target;
+                if (target.id === 'prev-page' && state.currentPage > 1) {
+                    state.currentPage--;
+                } else if (target.id === 'next-page' && state.currentPage < Math.ceil(state.filteredGames.length / state.itemsPerPage)) {
+                    state.currentPage++;
+                } else if (target.dataset.page) {
+                    state.currentPage = parseInt(target.dataset.page);
+                }
+                displayPage();
+            });
+            
+            // --- INICIALIZACIÓN ---
+            
+            const init = () => {
+                loadUpdateDate();
+                loadGames();
+            };
+
+            init();
+        });
+    </script>
+</body>
+</html>
