@@ -180,15 +180,15 @@
             const loadGames = async () => {
                 showMessage('Cargando novedades...');
                 try {
-                    const response = await fetch(GAMES_TSV_URL);
+                    const response = await fetch(GAMES_TSV_URL); 
                     if (!response.ok) throw new Error(`Error en la red: ${response.statusText}`);
                     
                     const tsvData = await response.text();
                     const rows = tsvData.trim().split('\n').slice(1);
 
                     state.allGames = rows.map(row => {
-                        const [title, source, imageUrl, link, price, description, date] = row.split('\t');
-                        return { title, source, imageUrl, link, price, description, date };
+                        const [title, source, imageUrl, link, price, description, date, verticalAlignment] = row.split('\t');
+                        return { title, source, imageUrl, link, price, description, date, verticalAlignment };
                     }).filter(game => game.title); // Filtrar filas vacías
 
                     applyFilter();
@@ -205,7 +205,8 @@
              * @returns {string} El HTML de la tarjeta.
              */
             const createGameCardHTML = (game) => {
-                const { title = '', source = 'INDIE', imageUrl = '', link = '#', price = '', description = '', date = '' } = game;
+                const { title = '', source = 'INDIE', imageUrl = '', link = '#', price = '', description = '', date = '', verticalAlignment = 'center' } = game;
+                
                 const priceStr = price.trim();
                 const sourceStr = source.trim();
                 const priceClass = priceStr.toLowerCase().includes('gratis') ? 'price-tag free' : 'price-tag';
@@ -215,7 +216,7 @@
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transform hover:-translate-y-1 transition-transform duration-300" data-source="${sourceStr}">
                         <div class="relative">
                             <span class="absolute top-4 right-4 text-sm font-bold py-1 px-2 rounded-md source ${sourceClass}">${sourceStr}</span>
-                            <img src="${imageUrl.trim()}" alt="Imagen de ${title.trim()}" class="w-full h-48 object-cover" onerror="this.style.display='none'">
+                            <img src="${imageUrl.trim()}" alt="Imagen de ${title.trim()}" class="w-full h-48 object-cover" style="object-position: ${verticalAlignment}" onerror="this.style.display='none'">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex justify-between items-start mb-2">
@@ -307,6 +308,7 @@
                     state.currentFilter = e.target.dataset.source;
                     applyFilter();
                 }
+
             });
 
             paginationControls.addEventListener('click', (e) => {
@@ -324,6 +326,7 @@
             // --- INICIALIZACIÓN ---
             
             const init = () => {
+
                 loadUpdateDate();
                 loadGames();
             };
