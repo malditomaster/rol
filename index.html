@@ -1,275 +1,335 @@
-<!DOCTYPE html><html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Novedades de rol para 3-6 Personajes de Nivel 10</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-            body{
-                font-family:'Lato',sans-serif;color:#333;margin:0;
-                background: linear-gradient(to bottom, #2c3e50, #0a2e47);
-                min-height: 100vh;
-                background-attachment: fixed;
-                margin: 0;
-                margin-bottom: 3rem;
-                padding: 0;
-            }
-            .container{max-width:1200px;margin:auto;padding: 2rem;}
-            h1{
-                margin-top: 3rem; line-height: 3.3rem; margin-bottom: .5rem;
-                text-align:center;color:white;
-                font-weight:800;font-size:4rem;font-family: "Roboto", sans-serif;
-            }
-            h4{
-                margin-bottom: 0;
-                text-align:center;color:white;
-                font-size:1.2rem;font-weight:400;font-family: "Roboto", sans-serif;
-            }
-            .error-message{color: white; text-align: center;}
-            .game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-            .game-card{background-color:#fff;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.05);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;position:relative}.game-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}.game-card img{width:100%;aspect-ratio:16 / 10;object-fit:cover;border-bottom:1px solid #eee}.card-content{padding:1.5rem;display:flex;flex-direction:column;flex-grow:1}.title-wrapper{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem}.card-content h2{margin:0;font-size:1.25rem;color:#2c3e50;flex-grow:1}.card-content h2 a{text-decoration:none;color:inherit}.card-content h2 a:hover{color:#e59b25;text-decoration: underline;}.price-tag{font-size:.9rem;font-weight:700;padding:.25rem .5rem;border-radius:4px;background-color:#e9ecef;color:#495057;white-space:nowrap;margin-left:.5rem}.price-tag.free{background-color:#28a745;color:#fff}.card-content p{margin:0;font-size:.95rem;line-height:1.6;flex-grow:1;color:#555}.source-badge{position:absolute;top:1rem;right:1rem;padding:.3rem .6rem;border-radius:6px;font-size:.8rem;font-weight:700;color:#fff;z-index:10}
-            .filter-controls {text-align: center;margin-bottom: 2rem;}
-            .filter-btn {background-color: #fff;border: 1px solid #ddd;border-radius: 20px;padding: .5rem 1rem;margin: 0.25rem;font-family: 'Lato', sans-serif;font-size: .9rem;cursor: pointer;transition: all .2s ease;  color: #000000;}
-            .filter-btn:hover {background-color: #e9ecef;border-color: #ccc;}
-            .filter-btn.active {background-color: #000000;color: #fff;border-color: #2c3e50;}
-            .game-card.hidden {display: none;}
-            .source-indie{background-color:#fa5c5c} /* Rojo para Indies */
-            .source-mecenazgo{background-color:#1e62a3} /* Se mantiene por si acaso, pero se usará Indies */
-            .source-en-tiendas{background-color:#17a2b8} /* Cian para En Tiendas */
-            .source-preventa{background-color:#ffc107;color:#212529} /* Amarillo para Preventa */
-            .source-avance{background-color:#212529;color:#ffffff} /* Negro para Avances */
-            .source-otros{background-color:#8e44ad;color:#ffffff}
-            .card-footer {margin-top: 1rem;text-align: right;}
-            .added-date {font-size: 0.8rem;color: #888;font-style: italic;}
-            @media (max-width:900px){.game-grid{grid-template-columns:repeat(2,1fr)}}
-            @media (max-width:600px){
-                .game-grid{grid-template-columns:1fr}
-                .container{padding:1rem}
-                h1{font-size:3rem;line-height: 2.4rem}
-                h4{font-size:1rem}
-                .top-bar {display: grid;grid-template-columns: auto 1fr auto;gap: 1rem;position: static;}
-                .top-bar-center {position: static !important; transform: none !important; left: auto !important; white-space: normal !important; text-align: right !important;}
-                .top-bar-right {display: none;}
-                .top-bar-left {font-size:2rem;}
-            }
-            /* Estilos para la paginación */
-            #pagination-controls {display: flex;justify-content: center;align-items: center;margin-top: 2.5rem;gap: 0.5rem;}
-            .pagination-btn {border: 1px solid #ddd;background-color: #fff;padding: 0.5rem 1rem;cursor: pointer;border-radius: 6px;font-family: 'Roboto', sans-serif;transition: all 0.2s ease;}
-            .pagination-btn:hover {background-color: #e9ecef;border-color: #ccc;}
-            .pagination-btn.active {background-color: black;color: #fff;border-color: black;font-weight: 700;}
-            .pagination-btn:disabled {cursor: not-allowed;opacity: 0.6;}
-            /* --- Barra Superior --- */
-            .top-bar {background-color: #e59b25;color: black;padding: 0.6rem 1.5rem;font-family: sans-serif;font-weight: bold;margin-bottom: 2rem;display: grid;grid-template-columns: auto 1fr auto; align-items: center;gap: 1rem;}
-            .top-bar {background-color: #e59b25;color: black;padding: 0.6rem 1.5rem;font-family: sans-serif;font-weight: bold;margin-bottom: 2rem;display: flex;justify-content: space-between;align-items: center;position: relative;}
-            .top-bar-center {position: absolute;left: 50%;transform: translateX(-50%);font-size: 1.1rem;text-align: center;white-space: nowrap;}
-            .top-bar-right {font-size: 0.8rem;}
-        </style>
-        <meta property="og:title" content="Novedades de rol en Español">
-        <meta property="og:description" content="Mantente al día con las últimas novedades de rol en español. Descubre los lanzamientos más recientes, preventas, títulos independientes y próximos juegos en un solo lugar.">
-        <meta property="og:image" content="https://pbs.twimg.com/profile_banners/15847515/1678908416/1500x500">
-        <meta property="og:url" content="https://malditomaster.github.io/rol/">
-        <meta property="og:type" content="website">
-        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-        <link rel="icon" href="favicon.ico">
-        <link rel="manifest" href="site.webmanifest">
-    </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NZCKL3M3XY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-NZCKL3M3XY');
-</script>
-<body>
-    <header class="top-bar">
-        <span class="top-bar-left">M2</span>
-        <span class="top-bar-center">Novedades de rol para 3-6 Personajes de Nivel 10</span>
-        <span id="update-date" class="top-bar-right"></span>
-    </header>
-    <h1>Compendio de<br/>Novedades Roleras</h1>
-    <h4>de malditomaster</h4>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compendio de Novedades Roleras</title>
 
-    <div class="container">
-        <div class="filter-controls">
-            <button class="filter-btn active" onclick="filterSource('all')">Todos</button>
-            <button class="filter-btn" onclick="filterSource('AVANCE')">Avance</button>
-            <button class="filter-btn" onclick="filterSource('MECENAZGO')">Mecenazgos</button>
-            <button class="filter-btn" onclick="filterSource('EN TIENDAS')">En Tiendas</button>
-            <button class="filter-btn" onclick="filterSource('PREVENTA')">Preventa</button>
-            <button class="filter-btn" onclick="filterSource('INDIE')">Indies</button>
-            <button class="filter-btn" onclick="filterSource('OTROS')">Otros</button>
-        </div>
-        <div class="error-message"></div>
-        <div class="game-grid"></div>
-        <div id="pagination-controls"></div>
-    </div>
+    <!-- Metadatos para SEO y redes sociales -->
+    <meta name="description" content="Mantente al día con las últimas novedades de rol en español. Descubre los lanzamientos más recientes, preventas, mecenazgos, , avances, etc.">
+    <meta property="og:title" content="Compendio de Novedades Roleras">
+    <meta property="og:description" content="Mantente al día con las últimas novedades de rol en español.">
+    <meta property="og:image" content="https://pbs.twimg.com/profile_banners/15847515/1678908416/1500x500">
+    <meta property="og:url" content="https://malditomaster.github.io/rol/">
+    <meta property="og:type" content="website">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700;900&display-swap" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(to bottom, #2c3e50, #0a2e47);
+            background-attachment: fixed;
+        }
+        h1, h4 { font-family: 'Roboto', sans-serif; }
+        header { font-family: sans-serif; }
+
+        /* Clases personalizadas para las insignias de origen */
+        .source { color: white; } 
+        .source-indie { background-color: #fa5c5c; }
+        .source-mecenazgo { background-color: #1e62a3; }
+        .source-en-tiendas { background-color: #17a2b8; }
+        .source-preventa { background-color: #ffc107; color: #212529; }
+        .source-avance { background-color: #212529; }
+        .source-otros { background-color: #8e44ad; }
+        .price-tag.free { background-color: #28a745; color: white; }
+
+        /* Estilos para los botones de filtro */
+        .filter-btn { background-color: white; color: black; border: 1px solid #ddd; border-radius: 9999px; padding: 0.5rem 1rem; font-size: 0.9rem; font-family: 'Lato', sans-serif; cursor: pointer; transition: all 0.2s ease; }
+        .filter-btn:hover { background-color: #e9ecef; border-color: #ccc; }
+        .filter-btn.active { background-color: #ffc107; color: black; border-color: #ffc107; }
+
+        /* Estilos para los botones de paginación */
+        .pagination-btn { background-color: white; color: black; border: 1px solid #ddd; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; font-family: 'Roboto', sans-serif; transition: all 0.2s ease; }
+        .pagination-btn:hover { background-color: #e9ecef; border-color: #ccc; }
+        .pagination-btn:disabled { cursor: not-allowed; opacity: 0.6; }
+        .pagination-btn.active { background-color: #ffc107; color: black; border-color: #ffc107; font-weight: 700; }
+    </style>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZCKL3M3XY"></script>
     <script>
-        const gamesTsvUrl = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=0';
-        
-        const dateTsvUrl = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=2131940647';       
-        
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NZCKL3M3XY');
+    </script>
+</head>
+<body class="text-gray-300">
 
-        // Variables para la paginación
-        let allGames = []; // Almacenará la lista maestra de todos los juegos
-        let filteredGames = []; // Almacenará los juegos después de aplicar un filtro
-        let currentPage = 1;
-        const itemsPerPage = 18;
+    <!-- Barra Superior -->
+    <header class="bg-yellow-500 text-black py-3 px-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto grid grid-cols-3 items-center">
+            <!-- Izquierda: M2 -->
+            <div class="justify-self-start">
+                 <span class="font-bold md:text-2xl text-4xl">M2</span>
+            </div>
+    
+            <!-- Centro (Desktop) / Derecha (Móvil) -->
+            <div class="md:justify-self-center col-span-2 md:col-span-1">
+                <!-- Título (Desktop) -->
+                <p class="hidden md:block font-semibold text-lg whitespace-nowrap text-center">Novedades de rol para 3-6 Jugadores de Nivel 10</p>
+                <!-- Título (Móvil) -->
+                <p class="md:hidden text-right text-lg leading-[1.2] font-semibold">Novedades de rol para 3-6 Jugadores de Nivel 10</p>
+            </div>
+            
+            <!-- Derecha (Solo Desktop): Fecha -->
+            <div class="hidden md:block justify-self-end">
+                <span id="update-date" class="text-sm font-semibold"></span>
+            </div>
+        </div>
+    </header>
 
-        async function loadUpdateDate() {
-            const dateElement = document.getElementById('update-date');
-            try {
-                const response = await fetch(dateTsvUrl);
-                if (!response.ok) throw new Error('No se pudo cargar la fecha.');
-                
-                const dateText = await response.text();
-                // Asumimos que la fecha está en la primera celda
-                dateElement.innerText = `${dateText.trim()}`;
+    <main class="container mx-auto px-4 py-12">
+        <!-- Título principal -->
+        <section class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl md:leading-[.85] font-extrabold text-white leading-[.85] mb-2">
+                Compendio de<br/>Novedades Roleras
+            </h1>
+            <h4 class="text-lg md:text-xl text-yellow-400">de malditomaster</h4>
+        </section>
 
-            } catch (error) {
-                console.error("Error al obtener la fecha:", error);
-                dateElement.innerText = 'Fecha no disponible';
-            }
-        }
+        <!-- Controles de Filtro -->
+        <section id="filter-controls" class="flex flex-wrap justify-center gap-2 mb-10">
+            <button class="filter-btn active" data-source="all">Todos</button>
+            <button class="filter-btn" data-source="AVANCE">Avance</button>
+            <button class="filter-btn" data-source="MECENAZGO">Mecenazgos</button>
+            <button class="filter-btn" data-source="EN TIENDAS">En Tiendas</button>
+            <button class="filter-btn" data-source="PREVENTA">Preventa</button>
+            <button class="filter-btn" data-source="INDIE">Indies</button>
+            <button class="filter-btn" data-source="OTROS">Otros</button>
+        </section>
 
-        async function loadGames() {
-            await loadUpdateDate();
+        <!-- Mensaje de error o carga -->
+        <div id="message-area" class="text-center text-white my-8"></div>
 
-            try {
-                const response = await fetch(gamesTsvUrl);
-                if (!response.ok) throw new Error(`Error en la red: ${response.statusText}`);
-                
-                const tsvData = await response.text();
-                const rows = tsvData.trim().split('\n').slice(1);
+        <!-- Rejilla de Juegos -->
+        <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Las tarjetas de juego se insertarán aquí dinámicamente -->
+        </div>
 
-                allGames = rows.map(row => {
-                    const columns = row.split('\t');
-                    const [ title, source, imageUrl, link, price, description, date] = columns;
-                    return { title, source, imageUrl, link, price, description, date };
-                });
+        <!-- Controles de Paginación -->
+        <nav id="pagination-controls" class="flex justify-center items-center mt-12 space-x-2">
+            <!-- Los botones de paginación se insertarán aquí -->
+        </nav>
+    </main>
 
-                filteredGames = [...allGames]; 
-                
-                displayPage(1);
-                setupPagination();
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // URLs de los datos
+            const GAMES_TSV_URL = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=0';
+            const DATE_TSV_URL = 'https://docs.google.com/spreadsheets/d/1kOeLYcSxC0WTc_ndyHxMJtfGTvad9V9aPTjrQJ_llfo/export?format=tsv&gid=2131940647';
+            
+            // Estado de la aplicación
+            const state = {
+                allGames: [],
+                filteredGames: [],
+                currentPage: 1,
+                itemsPerPage: 18,
+                currentFilter: 'all',
+            };
 
-            } catch (error) {
-                console.error('Error al cargar los datos:', error);
-                document.querySelector('.error-message').innerHTML = '<p>No se pudieron cargar los juegos. Inténtalo de nuevo más tarde.</p>';
-            }
-        }
+            // Elementos del DOM
+            const gameGrid = document.getElementById('game-grid');
+            const paginationControls = document.getElementById('pagination-controls');
+            const filterControls = document.getElementById('filter-controls');
+            const updateDateElement = document.getElementById('update-date');
+            const messageArea = document.getElementById('message-area');
 
-        function displayPage(page) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            /**
+             * Muestra un mensaje en el área designada.
+             * @param {string} message - El mensaje a mostrar.
+             * @param {('info'|'error')} type - El tipo de mensaje.
+             */
+            const showMessage = (message, type = 'info') => {
+                messageArea.innerHTML = `<p class="${type === 'error' ? 'text-red-500' : 'text-gray-400'}">${message}</p>`;
+            };
 
-            const gameGrid = document.querySelector('.game-grid');
-            gameGrid.innerHTML = '';
-            currentPage = page;
+            /**
+             * Carga la fecha de la última actualización y la muestra.
+             */
+            const loadUpdateDate = async () => {
+                try {
+                    const response = await fetch(DATE_TSV_URL);
+                    if (!response.ok) throw new Error('No se pudo cargar la fecha.');
+                    const dateText = await response.text();
+                    updateDateElement.textContent = dateText.trim();
+                } catch (error) {
+                    console.error("Error al obtener la fecha:", error);
+                    updateDateElement.textContent = 'Fecha no disponible';
+                }
+            };
 
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
+            /**
+             * Carga los datos de los juegos desde la hoja de cálculo.
+             */
+            const loadGames = async () => {
+                showMessage('Cargando novedades...');
+                try {
+                    const response = await fetch(GAMES_TSV_URL);
+                    if (!response.ok) throw new Error(`Error en la red: ${response.statusText}`);
+                    
+                    const tsvData = await response.text();
+                    const rows = tsvData.trim().split('\n').slice(1);
 
-            const paginatedItems = filteredGames.slice(startIndex, endIndex);
+                    state.allGames = rows.map(row => {
+                        const [title, source, imageUrl, link, price, description, date] = row.split('\t');
+                        return { title, source, imageUrl, link, price, description, date };
+                    }).filter(game => game.title); // Filtrar filas vacías
 
-            const cardsHtml = paginatedItems.map(game => {
-                 if (!game.title) return '';
-                const priceStr = game.price || '';
-                const sourceStr = game.source || 'INDIE';
+                    applyFilter();
+
+                } catch (error) {
+                    console.error('Error al cargar los datos:', error);
+                    showMessage('No se pudieron cargar los juegos. Inténtalo de nuevo más tarde.', 'error');
+                }
+            };
+
+            /**
+             * Crea el HTML para una tarjeta de juego.
+             * @param {object} game - El objeto del juego.
+             * @returns {string} El HTML de la tarjeta.
+             */
+            const createGameCardHTML = (game) => {
+                const { title = '', source = 'INDIE', imageUrl = '', link = '#', price = '', description = '', date = '' } = game;
+                const priceStr = price.trim();
+                const sourceStr = source.trim();
                 const priceClass = priceStr.toLowerCase().includes('gratis') ? 'price-tag free' : 'price-tag';
-                const sourceClass = sourceStr.trim().toLowerCase().replace(/\s+/g, '-');
+                const sourceClass = `source-${sourceStr.toLowerCase().replace(/\s+/g, '-')}`;
 
                 return `
-                    <div class="game-card" data-source="${sourceStr.trim()}">
-                        <span class="source-badge source-${sourceClass}">${sourceStr.trim()}</span>
-                        <img src="${(game.imageUrl || '').trim()}" alt="Imagen de ${game.title.trim()}">
-                        <div class="card-content">
-                            <div class="title-wrapper">
-                                <h2><a href="${(game.link || '#').trim()}" target="_blank" rel="noopener noreferrer">${game.title.trim()}</a></h2>
-                                <span class='${priceClass}'>${priceStr.trim()}</span>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transform hover:-translate-y-1 transition-transform duration-300" data-source="${sourceStr}">
+                        <div class="relative">
+                            <span class="absolute top-4 right-4 text-sm font-bold py-1 px-2 rounded-md source ${sourceClass}">${sourceStr}</span>
+                            <img src="${imageUrl.trim()}" alt="Imagen de ${title.trim()}" class="w-full h-48 object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h2 class="text-xl font-bold text-gray-900 flex-grow pr-2">
+                                    <a href="${link.trim()}" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-600 transition-colors duration-200">${title.trim()}</a>
+                                </h2>
+                                ${priceStr ? `<span class='text-sm font-semibold py-1 px-2 rounded bg-gray-200 text-gray-800 whitespace-nowrap ${priceClass}'>${priceStr}</span>` : ''}
                             </div>
-                            <p>${(game.description || '').trim()}</p>
-                            <div class="card-footer">
-                                <span class="added-date">${(game.date || '').trim()}</span>
+                            <p class="text-gray-600 text-base leading-relaxed flex-grow">${description.trim()}</p>
+                            <div class="mt-4 text-right">
+                                <span class="text-xs text-gray-500 italic">${date.trim()}</span>
                             </div>
                         </div>
                     </div>
                 `;
-            }).join('');
+            };
+
+            /**
+             * Muestra los juegos de la página actual.
+             */
+            const displayPage = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                gameGrid.innerHTML = '';
+                
+                if (state.filteredGames.length === 0) {
+                    showMessage('No hay juegos que coincidan con el filtro seleccionado.', 'info');
+                    return;
+                }
+                
+                messageArea.innerHTML = ''; // Limpiar mensajes si hay juegos
+                
+                const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+                const endIndex = startIndex + state.itemsPerPage;
+                const paginatedItems = state.filteredGames.slice(startIndex, endIndex);
+
+                const cardsHtml = paginatedItems.map(createGameCardHTML).join('');
+                gameGrid.innerHTML = cardsHtml;
+
+                setupPagination();
+            };
+
+            /**
+             * Configura y muestra los controles de paginación.
+             */
+            const setupPagination = () => {
+                paginationControls.innerHTML = '';
+                const pageCount = Math.ceil(state.filteredGames.length / state.itemsPerPage);
+
+                if (pageCount <= 1) return;
+
+                // Botón Anterior
+                paginationControls.insertAdjacentHTML('beforeend', `
+                    <button id="prev-page" class="pagination-btn" ${state.currentPage === 1 ? 'disabled' : ''}>Anterior</button>
+                `);
+
+                // Botones de página
+                for (let i = 1; i <= pageCount; i++) {
+                    paginationControls.insertAdjacentHTML('beforeend', `
+                        <button class="pagination-btn ${i === state.currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
+                    `);
+                }
+                
+                // Botón Siguiente
+                paginationControls.insertAdjacentHTML('beforeend', `
+                    <button id="next-page" class="pagination-btn" ${state.currentPage === pageCount ? 'disabled' : ''}>Siguiente</button>
+                `);
+            };
             
-            gameGrid.innerHTML = cardsHtml;
-            updatePaginationButtons();
-        }
-        
-        function setupPagination() {
-            const controlsContainer = document.getElementById('pagination-controls');
-            controlsContainer.innerHTML = '';
+            /**
+             * Aplica el filtro actual a la lista de juegos y actualiza la vista.
+             */
+            const applyFilter = () => {
+                if (state.currentFilter === 'all') {
+                    state.filteredGames = [...state.allGames];
+                } else {
+                    state.filteredGames = state.allGames.filter(game => game.source === state.currentFilter);
+                }
+                state.currentPage = 1;
+                displayPage();
+            };
 
-            const pageCount = Math.ceil(filteredGames.length / itemsPerPage);
+            // --- MANEJADORES DE EVENTOS ---
 
-            if (pageCount <= 1) return; // No mostrar controles si solo hay una página
-
-            const prevButton = document.createElement('button');
-            prevButton.classList.add('pagination-btn');
-            prevButton.innerText = 'Anterior';
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) displayPage(currentPage - 1);
-            });
-            controlsContainer.appendChild(prevButton);
-
-            for (let i = 1; i <= pageCount; i++) {
-                const button = document.createElement('button');
-                button.classList.add('pagination-btn');
-                button.dataset.page = i;
-                button.innerText = i;
-                button.addEventListener('click', () => displayPage(i));
-                controlsContainer.appendChild(button);
-            }
-            
-            const nextButton = document.createElement('button');
-            nextButton.classList.add('pagination-btn');
-            nextButton.innerText = 'Siguiente';
-            nextButton.addEventListener('click', () => {
-                if (currentPage < pageCount) displayPage(currentPage + 1);
-            });
-            controlsContainer.appendChild(nextButton);
-        }
-
-        function updatePaginationButtons() {
-
-            const pageCount = Math.ceil(filteredGames.length / itemsPerPage);
-            const prevButton = document.querySelector('#pagination-controls button:first-child');
-            const nextButton = document.querySelector('#pagination-controls button:last-child');
-            
-            if (prevButton) prevButton.disabled = currentPage === 1;
-            if (nextButton) nextButton.disabled = currentPage === pageCount;
-
-            document.querySelectorAll('.pagination-btn[data-page]').forEach(btn => {
-                btn.classList.remove('active');
-                if (parseInt(btn.dataset.page) === currentPage) {
-                    btn.classList.add('active');
+            filterControls.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    filterControls.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    
+                    state.currentFilter = e.target.dataset.source;
+                    applyFilter();
                 }
             });
-        }
 
-        function filterSource(source) {
-            // Actualiza el estado visual de los botones de filtro
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            paginationControls.addEventListener('click', (e) => {
+                const target = e.target;
+                if (target.id === 'prev-page' && state.currentPage > 1) {
+                    state.currentPage--;
+                } else if (target.id === 'next-page' && state.currentPage < Math.ceil(state.filteredGames.length / state.itemsPerPage)) {
+                    state.currentPage++;
+                } else if (target.dataset.page) {
+                    state.currentPage = parseInt(target.dataset.page);
+                }
+                displayPage();
+            });
             
-            // Filtra la lista de juegos
-            if (source === 'all') {
-                filteredGames = [...allGames];
-            } else {
-                filteredGames = allGames.filter(game => game.source === source);
-            }
+            // --- INICIALIZACIÓN ---
             
-            setupPagination();
-            displayPage(1);
-        }
-        
-        document.addEventListener('DOMContentLoaded', loadGames);
+            const init = () => {
+                loadUpdateDate();
+                loadGames();
+            };
+
+            init();
+        });
     </script>
-</body></html>
+</body>
+</html>
